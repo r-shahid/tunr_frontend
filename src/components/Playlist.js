@@ -11,7 +11,6 @@ const Playlist = () => {
 		time: '',
 		isFavorite: false,
 	});
-	// const [color, setColor] = useState("white")
 
 	const songAPI = async () => {
 		try {
@@ -25,9 +24,21 @@ const Playlist = () => {
 		}
 	};
 
+	const faveAPI = async () => {
+		try {
+			// im using rosters for faves --> there's no separate faves model and idk how to make a faves route from what i already have
+			// should have used a FILTER omg
+			const res = await fetch('https://rs-tunr-backend.herokuapp.com/rosters');
+			const json = await res.json();
+			setFaves(json);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	useEffect(() => {
 		songAPI();
-	}, []);
+	}, [faves, songs, updateFave]);
 
 	const faveTrue = (song) => {
 		axios({
@@ -36,7 +47,8 @@ const Playlist = () => {
 			data: { isFavorite: true },
 		});
 		setUpdateFave(true);
-		window.location.reload();
+		faveAPI()
+		// window.location.reload();
 	};
 
 	const faveFalse = (song) => {
@@ -46,7 +58,8 @@ const Playlist = () => {
 			data: { isFavorite: false },
 		});
 		setUpdateFave(false);
-		window.location.reload();
+		faveAPI()
+		// window.location.reload();
 	};
 
 	const handleDelete = (song) =>{
@@ -91,21 +104,8 @@ const Playlist = () => {
 	}
 
 	useEffect(() => {
-		const faveAPI = async () => {
-			try {
-				// im using rosters for faves --> there's no separate faves model and idk how to make a faves route from what i already have
-				// should have used a FILTER omg
-				const res = await fetch(
-					'https://rs-tunr-backend.herokuapp.com/rosters'
-				);
-				const json = await res.json();
-				setFaves(json);
-			} catch (error) {
-				console.log(error);
-			}
-		};
 		faveAPI();
-	}, []);
+	}, [updateFave, faves]);
 
 	let faveSongs = '';
 	if (songs[0]) {
@@ -149,7 +149,14 @@ const Playlist = () => {
 		} catch (error) {
 			console.log(error);
 		}
-		songAPI();
+		setFormData({
+			title: '',
+			artist: '',
+			time: '',
+			isFavorite: false,
+		});
+		// songAPI();
+		// window.location.reload();
 	};
 
 	return (
