@@ -1,10 +1,11 @@
 import './App.css';
 import Playlist from './components/Playlist';
+import Header from './components/Header'
 
 function App() {
   return (
     <div className="App">
-      <h1>Tunr header goes here</h1>
+      <Header />
       <Playlist />
     </div>
   );
