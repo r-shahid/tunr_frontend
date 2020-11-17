@@ -36,9 +36,7 @@ const Playlist = () => {
 			data: { isFavorite: true },
 		});
 		setUpdateFave(true);
-		// window.location.reload();
-		songAPI()
-		// setColor('red');
+		window.location.reload();
 	};
 
 	const faveFalse = (song) => {
@@ -64,30 +62,29 @@ const Playlist = () => {
 	if (songs[0]) {
 		displaySongs = songs.map((song) => {
 			if (song.isFavorite == true){
-				var name = (
-					<>
-						<p>
-							{song.title} <i class='fas fa-heart'></i>{' '}
-						</p>
-					</>
-				);
+				var name = (<div className='name'><p>{song.title}</p><i class='fas fa-heart'></i></div>);
 			}else {
-				var name = <p>{song.title}</p>
+				var name = (
+					<div className='name'>
+						<p>{song.title}</p>
+					</div>
+				);
 			}
 			return (
 				<div className='each-song'>
-					{/* <button onClick={() => faveTrue(song)}>Fave</button> */}
-					{/* <div className='each-song'> */}
-					<p className='title'>{name}</p>
-					<p className='artist'>{song.artist}</p>
-					<p className='time'>{song.time}</p>
-					
-					<button onClick={() => faveTrue(song)}>
-						{/* <i class='fas fa-heart'></i> */}
-						Fave
-					</button>
-					<button onClick={() => handleDelete(song)}>Delete</button>
-					{/* </div> */}
+					<div className='song-info'>
+						<p className='title'>{name}</p>
+						<p className='artist'>{song.artist}</p>
+						<p className='time'>{song.time}</p>
+					</div>
+					<div className='buttons'>
+						<button onClick={() => faveTrue(song)}>
+							<i class='far fa-heart fa-2x'></i>
+						</button>
+						<button onClick={() => handleDelete(song)}>
+							<i class='fas fa-trash fa-2x'></i>
+						</button>
+					</div>
 				</div>
 			);
 		});
@@ -115,10 +112,16 @@ const Playlist = () => {
 		faveSongs = faves.map((song) => {
 			return (
 				<div className='each-song'>
-					<p className='title'>{song.title}</p>
-					<p className='artist'>{song.artist}</p>
-					<p className='time'>{song.time}</p>
-					<button onClick={() => faveFalse(song)}>Remove</button>
+					<div className='song-info'>
+						<p className='title'>{song.title}</p>
+						<p className='artist'>{song.artist}</p>
+						<p className='time'>{song.time}</p>
+					</div>
+					<div className='buttons'>
+						<button onClick={() => faveFalse(song)}>
+							<i class='fas fa-times fa-2x'></i>
+						</button>
+					</div>
 				</div>
 			);
 		});
@@ -150,7 +153,7 @@ const Playlist = () => {
 	};
 
 	return (
-		<>
+		<div className='playlist'>
 			<h2>All Songs</h2>
 			{displaySongs}
 			<h2>Favorites</h2>
@@ -158,26 +161,26 @@ const Playlist = () => {
 			<h3>Add a New Song</h3>
 			<form>
 				<input
-					placeholder='title'
+					placeholder='Title'
 					name='title'
 					value={formData.title}
 					onChange={handleChange}
 				/>
 				<input
-					placeholder='artist'
+					placeholder='Artist'
 					name='artist'
 					value={formData.artist}
 					onChange={handleChange}
 				/>
 				<input
-					placeholder='time'
+					placeholder='Time'
 					name='time'
 					value={formData.time}
 					onChange={handleChange}
 				/>
 			</form>
-			<button onClick={handleSubmit}>Submit</button>
-		</>
+			<button className='submit' onClick={handleSubmit}>SUBMIT</button>
+		</div>
 	);
 };
 

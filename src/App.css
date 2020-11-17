@@ -1,11 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Monoton&family=Montserrat&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Cedarville+Cursive&display=swap'); */
+
+/* font-family: 'Monoton', cursive;
+font-family: 'Montserrat', sans-serif; */
+
+:root {
+  --dark-blue: #031225;
+  --pink: #E41FEC;
+  --purple: #8f37d7;
+  --light-pink: rgb(241, 161, 197);
+  --light-blue: rgb(2, 244, 200);
+  --light-purple: #A665B3;
+}
+
 body {
   padding: 20px;
+  background-color: var(--dark-blue);
+  max-width: 800px;
+  margin: auto;
+  background-image: linear-gradient(180deg, var(--dark-blue) 0%, #a624c0 100%);
+}
+
+.header {
+  padding: 0 30px;
+}
+
+.header h1 {
+  font-family: 'Monoton', cursive;
+  /* font-family: 'Cedarville Cursive', cursive; */
+  font-weight: 400;
+  font-size: 100px;
+  color: var(--light-pink);
+  text-shadow: 1px 1px 2px black, 0 0 40px var(--pink), 0 0 35px var(--purple);
+  margin: 0px;
+}
+
+.header p {
+  margin-top: 0px;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 3px;
+  text-align: right;
+  font-size: 25px;
+  font-weight: bold;
+  font-style: italic;
+  color: var(--light-blue);
+  text-shadow: 3px 3px var(--pink);
+
+}
+
+.header hr{
+  color: var(--pink);
+  background-color: var(--pink);
+  border-color: var(--pink);
+  height: 5px;
+}
+
+.playlist{
+  margin-top: 40px;
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.playlist h2, h3 {
+  letter-spacing: 3px;
+  font-weight: bold;
+  font-style: italic;
+  text-shadow: -3px 2px var(--pink);
+  color: var(--light-blue);
+  font-size: 25px;
+}
+
+.name p, i{
+  display: inline;
+}
+
+.name i {
+  margin-left: 5px;
 }
 
 .each-song {
   display: flex;
+  justify-content: center;
+  align-items: baseline;
+  padding: 0px 20px;
+  margin: 5px 10px;
+  border: 1px solid rgb(2, 244, 200, .5);
+}
+
+.each-song p {
+  color: var(--light-blue);
+  font-size: 12px;
+}
+
+.each-song .fa-heart {
+  color: var(--pink);
+  margin-left: 20px;
+}
+
+.buttons {
+  flex-grow: 1;
+  background-color: none;
+}
+
+.buttons button {
+  background-color: var(--none);
+  background-color: none;
+  border: none;
+  color: white;
+}
+
+.fas {
+  color: var(--light-purple);
+}
+
+.buttons i:hover {
+  color: var(--light-pink);
+}
+
+.song-info {
+  display: flex;
+  flex-grow: 100;
   justify-content: space-between;
-  padding: 0 20px;
-  background-color: lightblue;
-  margin: 10px;
+  align-items: center;
+  padding-right: 30px;
+  padding-left: 10px;
+  /* background-color: lightblue; */
+}
+
+.playlist form input, .submit {
+  width: 100%;
+  padding: 5px 10px;
+  margin: 5px 0;
+  box-sizing: border-box;
+  background-color: var(--none);
+  color: white;
+  font-size: 16px;
+  letter-spacing: 2px;
+  border: 1px solid var(--light-blue)
+}
+
+.submit{
+  padding: 10px;
+  letter-spacing: 4px;
+}
+
+button.submit:hover {
+  background-color: #f804d8;
+}
+
+::placeholder {
+  color: var(--light-pink)
+}
+
+.playlist {
+  padding-bottom: 100px;
+}
+
+@media screen and (min-width: 600px){
+  .each-song p {
+  font-size: 16px;
+}
 }
