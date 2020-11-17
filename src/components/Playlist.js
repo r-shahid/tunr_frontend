@@ -72,12 +72,13 @@ const Playlist = () => {
 	}
 
 	let displaySongs = '';
+	let name = '';
 	if (songs[0]) {
 		displaySongs = songs.map((song) => {
-			if (song.isFavorite == true){
-				var name = (<div className='name'><p>{song.title}</p><i class='fas fa-heart'></i></div>);
+			if (song.isFavorite === true){
+				name = (<div className='name'><p>{song.title}</p><i class='fas fa-heart'></i></div>);
 			}else {
-				var name = (
+				name = (
 					<div className='name'>
 						<p>{song.title}</p>
 					</div>
